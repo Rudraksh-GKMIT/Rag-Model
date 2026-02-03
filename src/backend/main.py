@@ -11,19 +11,19 @@ def main() -> None:
 
     client = weaviate.connect_to_local()
     # try:
-    #     # 🔥 1. Reset DocumentChunk completely (dev-friendly)
+    #     # 1. Reset DocumentChunk completely (dev-friendly)
     #     if client.collections.exists("DocumentChunk"):
     #         client.collections.delete("DocumentChunk")
     #         print("DocumentChunk collection deleted")
 
-    #     # 🔥 2. Ensure schemas exist
+    #     # 2. Ensure schemas exist
     #     initialize_document_collection(client)
     #     initialize_document_chunk_collection(client)
 
-    #     # 🔥 3. Seed documents (PASS client in)
+    #     # 3. Seed documents (PASS client in)
     #     seed_documents(client)
 
-    #     # 🔍 4. Verify
+    #     # 4. Verify
     #     print("Collections:", client.collections.list_all())
 
     #     docs = client.collections.use("Document").query.fetch_objects()
