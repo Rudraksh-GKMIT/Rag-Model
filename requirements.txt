@@ -1,0 +1,5 @@
+weaviate-client==4.19.2
+PyPDF2==3.0.1
+weaviate==0.1.2
+dotenv==0.9.9
+python-dotenv==1.2.1

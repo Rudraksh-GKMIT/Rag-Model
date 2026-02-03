@@ -1,5 +1,4 @@
-from src.llm.rag.pipline import rag_model
+from src.llm.rag.injection.load_pdf import ingest_documents
 
 if __name__ =="__main__" :
-    rag = rag_model()
-    print(rag)
+    ingest_documents()
