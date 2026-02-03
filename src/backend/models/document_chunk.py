@@ -20,9 +20,6 @@ def initialize_document_chunk_collection(client) -> None:
     client.collections.create(
         name="DocumentChunk",
 
-        # ✅ DO NOT set vectorizer_config
-        # ✅ DO NOT set vector_config
-
         vector_index_config=Configure.VectorIndex.hnsw(
             distance_metric=VectorDistances.COSINE,
             ef_construction=128,

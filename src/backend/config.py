@@ -6,5 +6,4 @@ load_dotenv()
 
 class Config:
     LOG_LEVEL=os.getenv("LOG_LEVEL", "INFO")
-    WEAVIATE_URL = os.getenv("WEAVIATE_URL")
     DOCUMENT_COLLECTION = os.getenv("DOCUMENT_COLLECTION")

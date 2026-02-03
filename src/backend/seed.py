@@ -38,7 +38,6 @@ def seed_documents(client):
         },
     ]
 
-    # Fetch existing docs to avoid duplicates (ON CONFLICT DO NOTHING equivalent)
     existing = collection.query.fetch_objects(
         return_properties=["document_path"]
     )
@@ -55,7 +54,6 @@ def seed_documents(client):
             batch.add_object(
                 properties={
                     "document_path": doc["document_path"],
-                    # ✅ convert dict → string
                     "metadata": json.dumps(doc["metadata"]),
                 }
             )

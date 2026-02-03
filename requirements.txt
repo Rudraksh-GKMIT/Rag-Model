@@ -3,3 +3,8 @@ PyPDF2==3.0.1
 weaviate==0.1.2
 dotenv==0.9.9
 python-dotenv==1.2.1
+python==3.11.4
+sentence-transformers==5.2.2
+torch==2.2.2
+numpy==1.26.4
+pypdf==6.6.2

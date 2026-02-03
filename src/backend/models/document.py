@@ -1,6 +1,10 @@
 import logging
-from weaviate.classes.config import Configure, Property, DataType, VectorDistances
-from src.backend.config import Config
+from weaviate.classes.config import (
+    Configure,
+    Property,
+    DataType,
+    VectorDistances,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -10,22 +14,21 @@ def initialize_document_collection(client) -> None:
     Create the Document collection in Weaviate if it does not already exist.
     Official Weaviate v4 configuration.
     """
-    # client.collections.delete(Config.DOCUMENT_COLLECTION)
 
-    if client.collections.exists(Config.DOCUMENT_COLLECTION):
+    if client.collections.exists("Document"):
         logger.info(
             "Collection '%s' already exists. Skipping creation.",
-            Config.DOCUMENT_COLLECTION,
+            "Document",
         )
         return
 
     logger.info(
         "Creating collection '%s'...",
-        Config.DOCUMENT_COLLECTION,
+        "Document",
     )
 
     client.collections.create(
-        name=Config.DOCUMENT_COLLECTION,
+        name="Document",
         vectorizer_config=Configure.Vectorizer.none(),
         vector_index_config=Configure.VectorIndex.hnsw(
             distance_metric=VectorDistances.COSINE,
@@ -59,5 +62,5 @@ def initialize_document_collection(client) -> None:
 
     logger.info(
         "Collection '%s' created successfully.",
-        Config.DOCUMENT_COLLECTION,
+        "Document",
     )

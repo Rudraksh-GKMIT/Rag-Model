@@ -2,9 +2,10 @@ import weaviate
 
 from src.llm.rag.embeddings.model import get_embedding_model
 from src.llm.rag.loaders.pdf_loader import extract_text_from_pdf
-from src.llm.rag.chunking.text_chunker import chunk_text
+from src.llm.rag.chunking.text_chunker import recursive_semantic_chunk
 from src.llm.rag.repository.document_repo import get_documents_without_chunks
 from src.llm.rag.repository.chunk_repo import store_chunks
+
 
 def ingest_documents():
     client = weaviate.connect_to_local()
@@ -27,7 +28,7 @@ def ingest_documents():
             if not text:
                 continue
 
-            chunks = chunk_text(text)
+            chunks = recursive_semantic_chunk(text)
             embeddings = model.encode(chunks)
 
             store_chunks(
