@@ -10,7 +10,7 @@ def initialize_document_collection(client) -> None:
     Create the Document collection in Weaviate if it does not already exist.
     Official Weaviate v4 configuration.
     """
-    client.collections.delete(Config.DOCUMENT_COLLECTION)
+    # client.collections.delete(Config.DOCUMENT_COLLECTION)
 
     if client.collections.exists(Config.DOCUMENT_COLLECTION):
         logger.info(

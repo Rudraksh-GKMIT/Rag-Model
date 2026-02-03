@@ -1,27 +1,3 @@
-# import re
-# import PyPDF2
-
-
-# def extract_text_from_pdf(file_path: str) -> str:
-#     text = []
-
-#     with open(file_path, "rb") as file:
-#         reader = PyPDF2.PdfReader(file)
-#         for page in reader.pages:
-#             page_text = page.extract_text()
-#             if page_text:
-#                 text.append(page_text)
-
-#     pdf_text = " ".join(text)
-
-#     # Normalize whitespace
-#     pdf_text = re.sub(r"\s+", " ", pdf_text)
-
-#     # Remove non-printable characters
-#     pdf_text = "".join(ch for ch in pdf_text if ch.isprintable())
-
-#     return pdf_text.strip()
-
 import re
 from datetime import datetime, timezone
 from typing import List
