@@ -12,14 +12,12 @@ def seed_documents(client):
     collection = client.collections.use("Document")
 
     documents = [
-        {"document_path": "IP/leip1ps.pdf", "metadata": {"document_name": "CH-0"}},
-        {"document_path": "IP/leip101.pdf", "metadata": {"document_name": "CH-1"}},
-        {"document_path": "IP/leip102.pdf", "metadata": {"document_name": "CH-2"}},
-        {"document_path": "IP/leip103.pdf", "metadata": {"document_name": "CH-3"}},
-        {"document_path": "IP/leip104.pdf", "metadata": {"document_name": "CH-4"}},
-        {"document_path": "IP/leip105.pdf", "metadata": {"document_name": "CH-5"}},
-        {"document_path": "IP/leip106.pdf", "metadata": {"document_name": "CH-6"}},
-        {"document_path": "IP/leip107.pdf", "metadata": {"document_name": "CH-7"}},
+        {"document_path": "documents/History/jess3ps.pdf", "metadata": {"document_name": "CH-0"}},
+        {"document_path": "documents/History/jess301.pdf", "metadata": {"document_name": "CH-1"}},
+        {"document_path": "documents/History/jess302.pdf", "metadata": {"document_name": "CH-2"}},
+        {"document_path": "documents/History/jess303.pdf", "metadata": {"document_name": "CH-3"}},
+        {"document_path": "documents/History/jess304.pdf", "metadata": {"document_name": "CH-4"}},
+        {"document_path": "documents/History/jess305.pdf", "metadata": {"document_name": "CH-5"}},
     ]
 
     logger.info("Fetching existing documents from Weaviate")
