@@ -55,6 +55,27 @@ def main() -> None:
         client.close()
 
 
+    # try:
+    #     chunk_collection = client.collections.use("DocumentChunk")
+
+    #     res = chunk_collection.query.fetch_objects(
+    #         limit=1,
+    #         include_vector=True
+    #     )
+        
+    #     obj = res.objects[0]
+    #     print(type(obj.vector))
+    #     print(len(obj.vector))
+
+    #     vec_dict = obj.vector
+    #     embedding = list(vec_dict.values())[0]
+
+    #     print(type(embedding))
+    #     print(len(embedding))
+    # finally:
+    #     client.close()
+
+
 
 if __name__ == "__main__":
     main()
