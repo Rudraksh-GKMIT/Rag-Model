@@ -1,4 +1,4 @@
-from llm.rag.pipeline import rag_model
+from src.llm.rag.pipeline import rag_model
 import warnings
 
 warnings.filterwarnings("ignore", category=ResourceWarning)
