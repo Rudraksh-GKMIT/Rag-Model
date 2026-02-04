@@ -1,3 +1,4 @@
+import os
 import json
 import logging
 
@@ -10,17 +11,22 @@ def seed_documents(client):
     logger.info("Starting document seeding")
 
     collection = client.collections.use("Document")
+    directory_path = "documents/History"
+
+    pdf_files = sorted(
+        f for f in os.listdir(directory_path)
+        if f.lower().endswith(".pdf")
+    )
 
     documents = [
-        {"document_path": "documents/History/jess3ps.pdf", "metadata": {"document_name": "CH-0"}},
-        {"document_path": "documents/History/jess301.pdf", "metadata": {"document_name": "CH-1"}},
-        {"document_path": "documents/History/jess302.pdf", "metadata": {"document_name": "CH-2"}},
-        {"document_path": "documents/History/jess303.pdf", "metadata": {"document_name": "CH-3"}},
-        {"document_path": "documents/History/jess304.pdf", "metadata": {"document_name": "CH-4"}},
-        {"document_path": "documents/History/jess305.pdf", "metadata": {"document_name": "CH-5"}},
+        {
+            "document_path": os.path.join(directory_path, filename),
+            "metadata": {"document_name": f"CH-{index}"}
+        }
+        for index, filename in enumerate(pdf_files)
     ]
-
     logger.info("Fetching existing documents from Weaviate")
+
     existing = collection.query.fetch_objects(
         return_properties=["document_path"]
     )
@@ -58,13 +64,13 @@ def seed_documents(client):
             current_batch_count += 1
 
             if current_batch_count == Constants.BATCH_SIZE:
-                logger.info("Batch %d SENT (auto by Weaviate)", batch_number)
+                logger.info("Batch %d SENT", batch_number)
                 batch_number += 1
                 current_batch_count = 0
 
     if current_batch_count > 0:
         logger.info(
-            "Final batch %d SENT on exit (%d items)",
+            "Final batch %d SENT (%d items)",
             batch_number,
             current_batch_count,
         )
