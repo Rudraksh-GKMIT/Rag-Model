@@ -1,6 +1,6 @@
 import logging
 from pathlib import Path
-from src.llm.rag.config import RAGConfig
+from src.config import Config
 
 
 def setup_logging():
@@ -10,7 +10,7 @@ def setup_logging():
     log_file = log_dir / "rag_model.log"
 
     logging.basicConfig(
-        level=RAGConfig.LOG_LEVEL,
+        level=Config.LOG_LEVEL,
         format="%(asctime)s | %(levelname)s | %(name)s | %(message)s",
         handlers=[
             logging.FileHandler(log_file, encoding="utf-8"),

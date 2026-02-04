@@ -1,3 +1,4 @@
+import logging
 import weaviate
 
 from src.backend.models.document import initialize_document_collection
@@ -5,52 +6,39 @@ from src.backend.models.document_chunk import initialize_document_chunk_collecti
 from src.backend.seed import seed_documents
 from src.logger import setup_logging
 
+logger = logging.getLogger(__name__)
+
 
 def run_backend() -> None:
     setup_logging()
+    logger.info("Starting backend initialization")
 
-    client = weaviate.connect_to_local()
+    client = None
     try:
-        # 1. Reset DocumentChunk completely (dev-friendly)
-        # if client.collections.exists("DocumentChunk"):
-        #     client.collections.delete("DocumentChunk")
-        #     print("DocumentChunk collection deleted")
+        logger.info("Connecting to local Weaviate")
+        client = weaviate.connect_to_local()
+        logger.info("Weaviate connection established")
 
-        # 2. Ensure schemas exist
+        logger.info("Initializing document collection")
         initialize_document_collection(client)
+
+        logger.info("Initializing document chunk collection")
         initialize_document_chunk_collection(client)
 
-        # 3. Seed documents (PASS client in)
+        logger.info("Seeding documents")
         seed_documents(client)
 
-        # 4. Verify
-        print("Collections:", client.collections.list_all())
+        logger.info("Backend initialization completed successfully")
 
-        docs = client.collections.use("Document").query.fetch_objects()
-        for d in docs.objects:
-            print(d.properties)
+    except Exception:
+        logger.exception("Backend initialization failed")
+        raise
 
     finally:
-        client.close()
-
-
-    # try:
-    #     collection = client.collections.use("DocumentChunk")
-
-    #     result = collection.query.fetch_objects(
-    #         limit=1,
-    #         include_vector=True
-    #     )
-
-    #     obj = result.objects[0]
-
-    #     vector = list(obj.vector.values())
-    #     print("Vector dim:", len(vector))
-    #     print("First 10:", vector)
-
-    # finally:
-    #     client.close()
-
+        if client:
+            logger.info("Closing Weaviate connection")
+            client.close()
+            logger.info("Weaviate connection closed")
 
 
 if __name__ == "__main__":

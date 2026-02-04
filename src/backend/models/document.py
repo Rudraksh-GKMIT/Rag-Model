@@ -29,6 +29,7 @@ def initialize_document_collection(client) -> None:
 
     client.collections.create(
         name="Document",
+        
         vectorizer_config=Configure.Vectorizer.none(),
         vector_index_config=Configure.VectorIndex.hnsw(
             distance_metric=VectorDistances.COSINE,

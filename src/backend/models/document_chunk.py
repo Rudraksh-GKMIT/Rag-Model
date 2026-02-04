@@ -1,3 +1,4 @@
+import logging
 from weaviate.classes.config import (
     Configure,
     Property,
@@ -5,6 +6,7 @@ from weaviate.classes.config import (
     VectorDistances,
 )
 
+logger = logging.getLogger(__name__)
 
 def initialize_document_chunk_collection(client) -> None:
     """
@@ -15,7 +17,16 @@ def initialize_document_chunk_collection(client) -> None:
     """
 
     if client.collections.exists("DocumentChunk"):
+        logger.info(
+            "Collection '%s' already exists. Skipping creation.",
+            "DocumentChunk",
+        )
         return
+    
+    logger.info(
+        "Creating collection '%s'...",
+        "DocumentChunk",
+    )
 
     client.collections.create(
         name="DocumentChunk",
@@ -44,4 +55,8 @@ def initialize_document_chunk_collection(client) -> None:
                 data_type=DataType.DATE,
             ),
         ],
+    )
+    logger.info(
+        "Collection '%s' created successfully.",
+        "DocumentChunk",
     )
