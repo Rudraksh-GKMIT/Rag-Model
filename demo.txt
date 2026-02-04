@@ -1,0 +1,7 @@
+        if client.collections.exists("DocumentChunk"):
+            client.collections.delete("DocumentChunk")
+            print("DocumentChunk collection deleted")
+
+        if client.collections.exists("Document"):
+            client.collections.delete("Document")
+            print("Document collection deleted")
