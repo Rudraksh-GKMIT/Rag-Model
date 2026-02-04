@@ -1,4 +1,5 @@
-from src.llm.rag.injection.ingest import ingest_documents
+from src.llm.rag.pipline import run_ingest, run_rag
 
-if __name__ =="__main__" :
-    ingest_documents()
+def run_rag_pipeline():
+    run_ingest()
+    run_rag()

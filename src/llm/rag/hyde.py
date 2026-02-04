@@ -1,9 +1,7 @@
 from openai import OpenAI
 
 from src.llm.rag.config import RAGConfig
-
-TEMPERATURE = 0.5
-MODEL = "gpt-4.1-mini"
+from src.llm.rag.constants import RagConstants
 
 QUERY_EXPANDER_PROMPT = """
 You are a query expansion utility.
@@ -26,8 +24,8 @@ def expand_query(query: str) -> str:
     """
     try:
         response = client.responses.create(
-            model=MODEL,
-            temperature=TEMPERATURE,
+            model=RagConstants.MODEL,
+            temperature=RagConstants.TEMPERATURE,
             input=QUERY_EXPANDER_PROMPT.format(
                 query=query
             ),

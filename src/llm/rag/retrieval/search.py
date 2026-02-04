@@ -7,7 +7,7 @@ class Retriever:
     def __init__(self):
         self.client = get_client()
         self.collection = self.client.collections.get("DocumentChunk")
-        self.embedder = get_embedding_model()  # SentenceTransformer
+        self.embedder = get_embedding_model()
 
     def vector_search(
         self,

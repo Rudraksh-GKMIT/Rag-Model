@@ -1,12 +1,15 @@
 import cohere
 from typing import List
 
+from src.llm.rag.config import RAGConfig
+from src.llm.rag.constants import RagConstants
+
 class CohereReranker:
     def __init__(
         self,
-        model: str = "rerank-english-v3.0"
+        model: str = RagConstants.COHERE_RERANK_MODEL
     ):
-        self.client = cohere.Client(api_key="2xx2tynNvvGHI6fDSLj23L2vScASfYq0pYAh0dWc")
+        self.client = cohere.Client(api_key=RAGConfig.COHERE_API_KEY)
         self.model = model
 
     def rerank(

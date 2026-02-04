@@ -1,5 +1,4 @@
 weaviate-client==4.19.2
-PyPDF2==3.0.1
 weaviate==0.1.2
 dotenv==0.9.9
 python-dotenv==1.2.1
@@ -8,3 +7,5 @@ sentence-transformers==5.2.2
 torch==2.2.2
 numpy==1.26.4
 pypdf==6.6.2
+cohere==5.20.2
+openai==2.16.0

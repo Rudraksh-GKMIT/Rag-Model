@@ -2,9 +2,7 @@ from typing import List
 from openai import OpenAI
 
 from src.llm.rag.config import RAGConfig
-
-TEMPERATURE = 0.5
-MODEL = "gpt-4.1-mini"
+from src.llm.rag.constants import RagConstants
 
 client = OpenAI(api_key=RAGConfig.OPENAI_API_KEY)
 
@@ -37,8 +35,8 @@ def generate_answer(
     )
     try:
         response = client.responses.create(
-            model=MODEL,
-            temperature=TEMPERATURE,
+            model=RagConstants.MODEL,
+            temperature=RagConstants.TEMPERATURE,
             input=prompt.format(
                 context= context,
                 query=query

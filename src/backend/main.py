@@ -6,15 +6,15 @@ from src.backend.seed import seed_documents
 from src.logger import setup_logging
 
 
-def main() -> None:
+def run_backend() -> None:
     setup_logging()
 
     client = weaviate.connect_to_local()
     try:
         # 1. Reset DocumentChunk completely (dev-friendly)
-        if client.collections.exists("DocumentChunk"):
-            client.collections.delete("DocumentChunk")
-            print("DocumentChunk collection deleted")
+        # if client.collections.exists("DocumentChunk"):
+        #     client.collections.delete("DocumentChunk")
+        #     print("DocumentChunk collection deleted")
 
         # 2. Ensure schemas exist
         initialize_document_collection(client)
@@ -54,4 +54,4 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    run_backend()
