@@ -19,14 +19,6 @@ def run_backend() -> None:
         client = weaviate.connect_to_local()
         logger.info("Weaviate connection established")
 
-        if client.collections.exists("DocumentChunk"):
-            client.collections.delete("DocumentChunk")
-            print("DocumentChunk collection deleted")
-
-        if client.collections.exists("Document"):
-            client.collections.delete("Document")
-            print("Document collection deleted")
-            
         logger.info("Initializing document collection")
         initialize_document_collection(client)
 
