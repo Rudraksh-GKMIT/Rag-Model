@@ -9,6 +9,7 @@ client = OpenAI(api_key=RAGConfig.OPENAI_API_KEY)
 prompt = """
     You are a helpful assistant.
     Answer the question ONLY using the context below.
+    Answer in an explanatory manner.
     If the answer is not present, say:
     "I don't know based on the provided documents."
 

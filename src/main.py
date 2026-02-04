@@ -52,10 +52,10 @@
 #         print("Chunk index:", obj.properties["chunk_index"])
 #         print("Text:", obj.properties["chunk_text"][:200])
 
-from src.backend.main import run_backend
+# from src.backend.main import run_backend
 from src.llm.main import run_rag_pipeline
 def run():
-    run_backend()
+    # run_backend()
     run_rag_pipeline()
 
     print("RAG pipeline executed successfully.")
