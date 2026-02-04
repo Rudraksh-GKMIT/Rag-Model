@@ -3,3 +3,5 @@ class RAGConstant:
     MODEL = "gpt-4.1-mini"
     COHERE_RERANK_MODEL = "rerank-english-v3.0"
     DEFAULT_MAX_ITERATION = 5
+    EMBEDDING_MODEL_NAME = "all-mpnet-base-v2"
+    CHUNK_SIZE = 400

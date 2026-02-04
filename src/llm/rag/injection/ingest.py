@@ -1,7 +1,7 @@
 import weaviate
 
 from src.llm.rag.embeddings.model import get_embedding_model
-from src.llm.rag.loaders.pdf_loader import extract_text_from_pdf
+from src.llm.rag.loaders.pdf_loader import extract_document
 from src.llm.rag.chunking.text_chunker import recursive_semantic_chunk
 from src.llm.rag.repository.document_repo import get_documents_without_chunks
 from src.llm.rag.repository.chunk_repo import store_chunks
@@ -19,26 +19,42 @@ def ingest_documents():
             path = doc["document_path"]
             print(f"Ingesting: {path}")
 
-            try:
-                text = extract_text_from_pdf(path)
-            except Exception as e:
-                print(f"---- Skipping {path}: {e}")
-                continue
+            blocks = extract_document(path, mode="camelot")
 
-            if not text:
-                continue
+            all_chunks = []
 
-            chunks = recursive_semantic_chunk(text)
-            embeddings = model.encode(chunks)
+            for block in blocks:
+
+                if block["type"] == "text":
+                    text_chunks = recursive_semantic_chunk(block["content"])
+
+                    for tc in text_chunks:
+                        tc_text = tc.get("content") if isinstance(tc, dict) else tc
+
+                        all_chunks.append({
+                            "content": tc_text,
+                            "type": "text",
+                            "metadata": block["metadata"]
+                        })
+
+                elif block["type"] == "table":
+                    all_chunks.append({
+                        "content": block["content"],
+                        "type": "table",
+                        "metadata": block["metadata"]
+                    })
+
+            contents = [c["content"] for c in all_chunks]
+            embeddings = model.encode(contents)
 
             store_chunks(
                 chunk_collection,
                 doc["document_id"],
-                chunks,
+                all_chunks,
                 embeddings,
             )
 
-            print(f"Stored {len(chunks)} chunks")
+            print(f"Stored {len(all_chunks)} chunks")
 
     finally:
         client.close()

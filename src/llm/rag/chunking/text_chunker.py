@@ -1,11 +1,11 @@
 import re
 from typing import List
 
-from src.llm.rag.constants import Constants
+from src.llm.rag.constant import RAGConstant
 
 def recursive_semantic_chunk(
     text: str,
-    chunk_size: int = Constants.CHUNK_SIZE,
+    chunk_size: int = RAGConstant.CHUNK_SIZE,
 ) -> List[str]:
 
     if len(text) <= chunk_size:

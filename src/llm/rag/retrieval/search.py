@@ -1,13 +1,14 @@
+import weaviate
+
 from typing import List
-from src.backend.weaviate_I.client import get_client
 from src.llm.rag.embeddings.model import get_embedding_model
 
 
 class Retriever:
     def __init__(self):
-        self.client = get_client()
+        self.client = weaviate.connect_to_local()
         self.collection = self.client.collections.get("DocumentChunk")
-        self.embedder = get_embedding_model()  # SentenceTransformer
+        self.embedder = get_embedding_model() 
 
     def close(self):
         if self.client:
