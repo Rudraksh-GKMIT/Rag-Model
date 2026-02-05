@@ -3,8 +3,8 @@ import weaviate
 from src.llm.rag.embeddings.model import get_embedding_model
 from src.llm.rag.loaders.pdf_loader import extract_document
 from src.llm.rag.chunking.text_chunker import recursive_semantic_chunk
-from src.llm.rag.repository.document_repo import get_documents_without_chunks
-from src.llm.rag.repository.chunk_repo import store_chunks
+from llm.rag.repository.get_documents import get_documents_without_chunks
+from llm.rag.repository.store_chunk import store_chunks
 
 
 def ingest_documents():
