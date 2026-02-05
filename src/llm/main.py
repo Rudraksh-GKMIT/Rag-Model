@@ -1,4 +1,4 @@
-from src.llm.rag.pipline import rag_model
+from src.llm.rag.pipeline import rag_model
 
 if __name__ =="__main__" :
     rag = rag_model()
