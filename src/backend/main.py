@@ -3,7 +3,7 @@ import weaviate
 
 from src.backend.models.document import initialize_document_collection
 from src.backend.models.document_chunk import initialize_document_chunk_collection
-from src.backend.seed import upload_documents
+from backend.upload_documents import upload_documents
 from src.logger import setup_logging
 
 logger = logging.getLogger(__name__)
