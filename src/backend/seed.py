@@ -7,7 +7,7 @@ from src.backend.constants import Constants
 logger = logging.getLogger(__name__)
 
 
-def seed_documents(client):
+def upload_documents(client):
     logger.info("Starting document seeding")
 
     collection = client.collections.use("Document")

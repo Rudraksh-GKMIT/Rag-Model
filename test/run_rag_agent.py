@@ -21,13 +21,11 @@ def main():
 
         try:
             response,_ = rag_model(chat_history=chat_history,user_input=user_input)
-            # print(tool_output)
             # user_message = {"role": "user", "content": user_input}
             assistent = {"role": "assistant", "content": response}
             chat_history.append(assistent)
             
             print(f"\n[Agent]: {response}\n")
-            # print(chat_history)
 
         except Exception as e:
             print(f"\n Error: {e}\n")

@@ -3,13 +3,13 @@ import weaviate
 
 from src.backend.models.document import initialize_document_collection
 from src.backend.models.document_chunk import initialize_document_chunk_collection
-from src.backend.seed import seed_documents
+from src.backend.seed import upload_documents
 from src.logger import setup_logging
 
 logger = logging.getLogger(__name__)
 
 
-def run_backend() -> None:
+def initialize_database() -> None:
     setup_logging()
     logger.info("Starting backend initialization")
 
@@ -26,7 +26,7 @@ def run_backend() -> None:
         initialize_document_chunk_collection(client)
 
         logger.info("Seeding documents")
-        seed_documents(client)
+        upload_documents(client)
 
         logger.info("Backend initialization completed successfully")
 
@@ -42,4 +42,4 @@ def run_backend() -> None:
 
 
 if __name__ == "__main__":
-    run_backend()
+    initialize_database()
